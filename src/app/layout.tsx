@@ -1,6 +1,7 @@
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/shared/navbar";
+import { Navbar } from "@/components/navbar";
+import { TanstackProvider } from "@/providers/tanstack-provider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -16,7 +17,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${poppins.className} antialiased`}>
         <Navbar />
-        {children}
+        <TanstackProvider>{children}</TanstackProvider>
       </body>
     </html>
   );
