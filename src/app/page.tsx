@@ -1,4 +1,5 @@
 import Hero from "@/components/hero";
+import NewsSection from "@/components/news-section";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -10,6 +11,7 @@ export default function Home() {
   return (
     <main>
       <Hero />
+      <NewsSection />
     </main>
   );
 }
