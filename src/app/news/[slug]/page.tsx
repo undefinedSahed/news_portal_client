@@ -6,9 +6,10 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
 import { useParams } from "next/navigation";
+import { Navbar } from "@/components/navbar";
+import Image from "next/image";
 
 export default function NewsPage() {
   const params = useParams();
@@ -18,7 +19,7 @@ export default function NewsPage() {
   if (isLoading) {
     return (
       <>
-        {" "}
+        <Navbar />
         <main className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
           <Skeleton className="w-full h-96 rounded-lg mb-8" />
           <Skeleton className="w-full h-8 mb-4" />
@@ -31,6 +32,7 @@ export default function NewsPage() {
   if (!news) {
     return (
       <>
+        <Navbar />
         <main className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
           <div className="text-center py-12">
             <p className="text-muted-foreground mb-4">News not found</p>
@@ -45,9 +47,10 @@ export default function NewsPage() {
 
   return (
     <>
-      <main className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
+      <Navbar />
+      <main className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
         <Link href="/">
-          <Button variant="ghost" size="sm" className="mb-6 cursor-pointer">
+          <Button variant="ghost" size="sm" className="mb-6">
             <ArrowLeft className="h-4 w-4 mr-2" />
             Back to news
           </Button>
@@ -55,13 +58,16 @@ export default function NewsPage() {
 
         <article>
           {/* Image */}
-          <div className="relative w-full aspect-video rounded-lg overflow-hidden mb-8">
+          <div className="w-full h-96 rounded-lg overflow-hidden mb-8">
             <Image
-              src={news.imageUrl}
+              width={1000}
+              height={1000}
+              src={news.imageUrl || "/placeholder.svg"}
               alt={news.title}
-              fill
-              className="object-cover"
-              priority
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                e.currentTarget.src = "/placeholder.svg";
+              }}
             />
           </div>
 
@@ -76,9 +82,7 @@ export default function NewsPage() {
           </div>
 
           {/* Title */}
-          <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-4">
-            {news.title}
-          </h1>
+          <h1 className="text-xl sm:text-2xl font-bold mb-4">{news.title}</h1>
 
           {/* Description */}
           <p className="text-xl text-muted-foreground mb-8">

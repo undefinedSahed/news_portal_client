@@ -1,15 +1,10 @@
 "use client";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { SessionProvider } from "next-auth/react";
-import { ReactNode, useState } from "react";
 import { Toaster } from "sonner";
+import { ReactNode, useState } from "react";
 
-interface Props {
-  children: ReactNode;
-}
-
-const AppProvider = ({ children }: Props) => {
+export function Providers({ children }: { children: ReactNode }) {
   const [queryClient] = useState(
     () =>
       new QueryClient({
@@ -23,12 +18,11 @@ const AppProvider = ({ children }: Props) => {
         },
       }),
   );
+
   return (
     <QueryClientProvider client={queryClient}>
-      <SessionProvider>{children}</SessionProvider>
-      <Toaster position="top-right" duration={2000} />
+      {children}
+      <Toaster position="top-right" />
     </QueryClientProvider>
   );
-};
-
-export default AppProvider;
+}

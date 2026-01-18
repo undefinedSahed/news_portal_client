@@ -9,7 +9,6 @@ import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
-import { signIn } from "next-auth/react";
 
 export default function AdminLogin() {
   const router = useRouter();
@@ -22,23 +21,25 @@ export default function AdminLogin() {
     setIsLoading(true);
 
     try {
-      console.log("Attempting login with username:", username);
-      const result = await signIn("credentials", {
-        username,
-        password,
-        redirect: false,
+      const response = await fetch("/api/auth", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
       });
 
-      if (!result?.ok) {
-        throw new Error(result?.error || "Login failed");
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Login failed");
       }
 
+      localStorage.setItem("accessToken", data.data.access_token);
+      localStorage.setItem("username", data.data.username);
+
       toast.success("Login successful");
-      console.log("Login successful, redirecting to dashboard");
       router.push("/admin/dashboard");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      console.log("Login error:", error);
       toast.error(error.message || "Login failed");
     } finally {
       setIsLoading(false);
