@@ -19,7 +19,7 @@ export function Navbar() {
               Home
             </Link>
             <Link
-              href="/admin/login"
+              href="/admin/dashboard"
               className="text-sm font-medium hover:text-primary transition"
             >
               Admin
