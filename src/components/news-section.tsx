@@ -23,7 +23,7 @@ export default function NewsSection() {
   const { data: newsData, isLoading } = useGetNewsPagination(
     page,
     ITEMS_PER_PAGE,
-    category || undefined
+    category || undefined,
   );
   const { data: categories } = useGetCategories();
 
@@ -38,7 +38,7 @@ export default function NewsSection() {
           <span className="text-sm font-medium">Filter by category:</span>
           <Select
             value={category}
-            onValueChange={(value) => {
+            onValueChange={(value: string) => {
               setCategory(value);
               setPage(1);
             }}
@@ -58,7 +58,6 @@ export default function NewsSection() {
         </div>
       )}
 
-      {/* News Grid */}
       {isLoading ? (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {Array.from({ length: 9 }).map((_, i) => (
@@ -73,7 +72,6 @@ export default function NewsSection() {
             ))}
           </div>
 
-          {/* Pagination */}
           {totalPages > 1 && (
             <div className="flex items-center justify-center gap-2 mt-12">
               <Button

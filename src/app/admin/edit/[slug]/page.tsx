@@ -46,7 +46,6 @@ export default function EditNewsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
       <header className="border-b bg-card">
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
           <Link href="/admin/dashboard">
@@ -59,7 +58,6 @@ export default function EditNewsPage() {
         </div>
       </header>
 
-      {/* Content */}
       <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         {isLoading ? (
           <div className="space-y-4 max-w-2xl">

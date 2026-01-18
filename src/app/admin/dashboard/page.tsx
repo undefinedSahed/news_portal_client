@@ -67,7 +67,6 @@ export default function AdminDashboard() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
       <header className="border-b bg-card">
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
@@ -88,7 +87,6 @@ export default function AdminDashboard() {
         </div>
       </header>
 
-      {/* Content */}
       <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         {isLoading ? (
           <div className="space-y-4">
@@ -183,7 +181,6 @@ export default function AdminDashboard() {
               ))}
             </div>
 
-            {/* Pagination */}
             {newsData.pagination && newsData.pagination.total > 10 && (
               <div className="flex justify-center gap-2 mt-8">
                 <Button
@@ -216,7 +213,6 @@ export default function AdminDashboard() {
         )}
       </main>
 
-      {/* Delete Dialog */}
       <AlertDialog
         open={!!deleteId}
         onOpenChange={(open: boolean) => !open && setDeleteId(null)}

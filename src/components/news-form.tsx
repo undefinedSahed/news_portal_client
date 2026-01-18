@@ -104,7 +104,6 @@ export function NewsForm({
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6 max-w-2xl">
-      {/* Title */}
       <div className="space-y-2">
         <label className="text-sm font-medium">Title *</label>
         <Input
@@ -117,7 +116,6 @@ export function NewsForm({
         />
       </div>
 
-      {/* Description */}
       <div className="space-y-2">
         <label className="text-sm font-medium">Description *</label>
         <Textarea
@@ -131,7 +129,6 @@ export function NewsForm({
         />
       </div>
 
-      {/* Content */}
       <div className="space-y-2">
         <label className="text-sm font-medium">Content *</label>
         <Textarea
@@ -145,7 +142,6 @@ export function NewsForm({
         />
       </div>
 
-      {/* Category */}
       <div className="space-y-2">
         <label className="text-sm font-medium">Category *</label>
         <Input
@@ -158,7 +154,6 @@ export function NewsForm({
         />
       </div>
 
-      {/* Image */}
       <div className="space-y-2">
         <label className="text-sm font-medium">
           {isEditing ? "Change Image" : "Image"} {!isEditing && "*"}
@@ -199,7 +194,6 @@ export function NewsForm({
         </Card>
       </div>
 
-      {/* Submit */}
       <div className="flex gap-4">
         <Button type="submit" disabled={isPending}>
           {isPending && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}

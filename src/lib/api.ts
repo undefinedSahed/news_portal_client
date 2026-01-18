@@ -8,7 +8,6 @@ export const api = axios.create({
   baseURL: API_URL,
 });
 
-// Add request interceptor to add auth token
 api.interceptors.request.use(
   (config) => {
     const token =
@@ -23,7 +22,6 @@ api.interceptors.request.use(
   (error) => Promise.reject(error),
 );
 
-// Response interceptor to handle errors
 api.interceptors.response.use(
   (response) => response,
   (error) => {

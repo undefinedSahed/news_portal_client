@@ -56,7 +56,6 @@ export default function NewsPage() {
         </Link>
 
         <article>
-          {/* Image */}
           <div className="w-full h-96 rounded-lg overflow-hidden mb-8">
             <Image
               width={1000}
@@ -70,7 +69,6 @@ export default function NewsPage() {
             />
           </div>
 
-          {/* Meta */}
           <div className="flex flex-wrap items-center gap-4 mb-6">
             <Badge>
               {news.category.charAt(0).toUpperCase() + news.category.slice(1)}
@@ -80,22 +78,18 @@ export default function NewsPage() {
             </time>
           </div>
 
-          {/* Title */}
           <h1 className="text-xl sm:text-2xl font-bold mb-4">{news.title}</h1>
 
-          {/* Description */}
           <p className="text-xl text-muted-foreground mb-8">
             {news.description}
           </p>
 
-          {/* Content */}
           <div className="prose prose-invert max-w-none mb-12">
             <div className="whitespace-pre-wrap leading-relaxed text-base">
               {news.content}
             </div>
           </div>
 
-          {/* Last updated */}
           <div className="pt-8 border-t">
             <p className="text-sm text-muted-foreground">
               Last updated:{" "}
