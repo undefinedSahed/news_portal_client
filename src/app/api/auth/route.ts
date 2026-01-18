@@ -3,6 +3,8 @@ import api from "@/lib/api";
 export async function POST(request: Request) {
   const body = await request.json();
 
+  console.log("ABCD: ", body);
+
   try {
     const response = await api.post("/auth/login", {
       username: body.username,
@@ -12,8 +14,11 @@ export async function POST(request: Request) {
       success: true,
       data: response.data,
     });
+
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
+    console.log("Error: ", error);
+
     return Response.json(
       {
         success: false,

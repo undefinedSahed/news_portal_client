@@ -103,6 +103,8 @@ export default function AdminDashboard() {
                     {/* Image */}
                     <div className="w-full sm:w-32 h-32 rounded-lg overflow-hidden shrink-0">
                       <Image
+                        width={200}
+                        height={200}
                         src={news.imageUrl || "/placeholder.svg"}
                         alt={news.title}
                         className="w-full h-full object-cover"
@@ -215,7 +217,7 @@ export default function AdminDashboard() {
       {/* Delete Dialog */}
       <AlertDialog
         open={!!deleteId}
-        onOpenChange={(open: boolean) => !open && setDeleteId(null)}
+        onOpenChange={(open) => !open && setDeleteId(null)}
       >
         <AlertDialogContent>
           <AlertDialogHeader>

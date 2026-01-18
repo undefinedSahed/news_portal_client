@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { toast } from "sonner";
 import api from "./api";
+import { toast } from "sonner";
 
 // Types
 export interface News {
@@ -45,10 +45,10 @@ export interface CategoriesResponse {
 export const useGetNews = (
   page: number = 1,
   limit: number = 10,
-  category?: string
+  category?: string,
 ) => {
   let url = `/news?page=${page}&limit=${limit}`;
-  if (category) {
+  if (category !== "all") {
     url += `&category=${category}`;
   }
 
@@ -65,7 +65,7 @@ export const useGetNews = (
 export const useGetNewsPagination = (
   page: number = 1,
   limit: number = 10,
-  category?: string
+  category?: string,
 ) => {
   let url = `/news?page=${page}&limit=${limit}`;
   if (category !== "all") {
@@ -110,7 +110,7 @@ export const useGetAdminNews = (page: number = 1, limit: number = 10) => {
     queryKey: ["admin-news", page, limit],
     queryFn: async () => {
       const response = await api.get<NewsResponse>(
-        `/news/admin/all?page=${page}&limit=${limit}`
+        `/news/admin/all?page=${page}&limit=${limit}`,
       );
       return response.data;
     },
@@ -150,16 +150,29 @@ export const useUpdateNews = () => {
     mutationFn: async ({
       id,
       formData,
+      data,
     }: {
       id: string;
-      formData: FormData;
+      formData?: FormData;
+      data?: News;
     }) => {
-      const response = await api.patch(`/news/${id}`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      return response.data;
+      if (data) {
+        // Send JSON data (for simple updates like isPublished)
+        const response = await api.patch(`/news/${id}`, data, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        return response.data;
+      } else if (formData) {
+        // Send FormData (for file uploads)
+        const response = await api.patch(`/news/${id}`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+        return response.data;
+      }
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["admin-news"] });
@@ -189,5 +202,16 @@ export const useDeleteNews = () => {
     onError: (error: any) => {
       toast.error(error.response?.data?.message || "Failed to delete news");
     },
+  });
+};
+
+export const useGetNewsByIdForEdit = (id: string) => {
+  return useQuery({
+    queryKey: ["admin-news-single", id],
+    queryFn: async () => {
+      const response = await api.get<SingleNewsResponse>(`/news/${id}`);
+      return response.data.data;
+    },
+    enabled: !!id,
   });
 };

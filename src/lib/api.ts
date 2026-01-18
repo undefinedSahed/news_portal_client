@@ -10,14 +10,17 @@ export const api = axios.create({
 
 // Add request interceptor to add auth token
 api.interceptors.request.use(
-  async (config) => {
-    const token = localStorage.getItem("accessToken");
+  (config) => {
+    const token =
+      typeof window !== "undefined"
+        ? localStorage.getItem("accessToken")
+        : null;
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
   },
-  (error) => Promise.reject(error)
+  (error) => Promise.reject(error),
 );
 
 // Response interceptor to handle errors
@@ -29,7 +32,7 @@ api.interceptors.response.use(
       window.location.href = "/admin/login";
     }
     return Promise.reject(error);
-  }
+  },
 );
 
 export default api;

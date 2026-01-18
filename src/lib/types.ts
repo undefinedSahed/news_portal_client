@@ -1,3 +1,8 @@
+/**
+ * API Response Types
+ * These types correspond to the backend API responses
+ */
+
 export interface News {
   _id: string;
   title: string;
@@ -13,26 +18,34 @@ export interface News {
   __v: number;
 }
 
-// types/next-auth.d.ts
-import { DefaultSession, DefaultUser } from "next-auth";
-
-declare module "next-auth" {
-  interface Session {
-    user: {
-      accessToken: string;
-      username: string;
-    } & DefaultSession["user"];
-  }
-
-  interface User extends DefaultUser {
-    accessToken: string;
-    username: string;
-  }
+export interface Pagination {
+  total: number;
+  page: number;
+  limit: number;
 }
 
-declare module "next-auth/jwt" {
-  interface JWT {
-    accessToken: string;
-    username: string;
-  }
+export interface ApiResponse<T> {
+  statusCode: number;
+  message: string;
+  data: T;
+  pagination?: Pagination;
+}
+
+export interface AuthResponse {
+  username: string;
+  access_token: string;
+}
+
+export interface ApiError {
+  statusCode: number;
+  message: string;
+  error: string;
+}
+
+export interface NewsFormData {
+  title: string;
+  description: string;
+  content: string;
+  category: string;
+  image?: File;
 }
