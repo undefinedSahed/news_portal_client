@@ -6,16 +6,8 @@ import { useState } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "./ui/select";
 import { Card } from "./ui/card";
 import {
-  useGetCategories,
   useCreateNews,
   useUpdateNews,
   News,
@@ -45,7 +37,6 @@ export function NewsForm({
   const [imagePreview, setImagePreview] = useState<string>(
     initialData?.imageUrl || "",
   );
-  const { data: categories } = useGetCategories();
   const { mutate: createNews, isPending: isCreating } = useCreateNews();
   const { mutate: updateNews, isPending: isUpdating } = useUpdateNews();
 
@@ -58,10 +49,6 @@ export function NewsForm({
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSelectChange = (value: string) => {
-    setFormData((prev) => ({ ...prev, category: value }));
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {

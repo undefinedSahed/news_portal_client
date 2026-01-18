@@ -16,10 +16,12 @@ export default function NewsPage() {
   const slug = params.slug as string;
   const { data: news, isLoading } = useGetNewsBySlug(slug);
 
+  console.log("Slug:", slug);
+  console.log("News data:", news);
+
   if (isLoading) {
     return (
       <>
-        <Navbar />
         <main className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
           <Skeleton className="w-full h-96 rounded-lg mb-8" />
           <Skeleton className="w-full h-8 mb-4" />
@@ -32,7 +34,6 @@ export default function NewsPage() {
   if (!news) {
     return (
       <>
-        <Navbar />
         <main className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
           <div className="text-center py-12">
             <p className="text-muted-foreground mb-4">News not found</p>
@@ -47,7 +48,6 @@ export default function NewsPage() {
 
   return (
     <>
-      <Navbar />
       <main className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
         <Link href="/">
           <Button variant="ghost" size="sm" className="mb-6">

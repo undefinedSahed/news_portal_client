@@ -162,7 +162,7 @@ export default function AdminDashboard() {
                             </>
                           )}
                         </Button>
-                        <Link href={`/admin/edit/${news._id}`}>
+                        <Link href={`/admin/edit/${news.slug}`}>
                           <Button size="sm" variant="outline">
                             <Edit2 className="h-4 w-4 mr-2" />
                             Edit
@@ -219,7 +219,7 @@ export default function AdminDashboard() {
       {/* Delete Dialog */}
       <AlertDialog
         open={!!deleteId}
-        onOpenChange={(open) => !open && setDeleteId(null)}
+        onOpenChange={(open: boolean) => !open && setDeleteId(null)}
       >
         <AlertDialogContent>
           <AlertDialogHeader>
@@ -232,7 +232,7 @@ export default function AdminDashboard() {
           <div className="flex gap-4 justify-end">
             <AlertDialogCancel>Cancel</AlertDialogCancel>
             <AlertDialogAction
-              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90 text-white"
               onClick={() => deleteId && handleDelete(deleteId)}
             >
               Delete
