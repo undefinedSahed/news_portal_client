@@ -1,36 +1,107 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# News Portal Frontend
 
-## Getting Started
+This is the **frontend application** for the News Portal project, built with **Next.js** and focused on consuming the backend APIs to deliver a functional news reading and management experience.
 
-First, run the development server:
+The primary goal of this frontend was to ensure **correct functionality, API integration, and data flow** within a limited timeframe.
+
+---
+
+## Tech Stack
+
+- **Framework:** Next.js `16.0.10`
+- **UI Components:** shadcn/ui
+- **State & Data Fetching:** TanStack Query (React Query)
+- **Styling:** Tailwind CSS
+- **HTTP Client:** Fetch API
+- **Deployment:** Vercel
+
+---
+
+## Features
+
+- View all published news articles
+- View single news details
+- Admin login
+- Create, update, and delete news (admin only)
+- Image upload support (handled via backend & Cloudinary)
+- API state management using TanStack Query
+- Client-side routing with Next.js App Router
+
+---
+
+## Live Demo
+
+**Frontend Live URL:**
+[https://news-portal-client-plum.vercel.app/](https://news-portal-client-plum.vercel.app/)
+
+---
+
+## Backend Integration
+
+This frontend consumes APIs from the NestJS backend.
+
+- **Backend Live URL:**
+  [https://news-portal-server-murp.onrender.com](https://news-portal-server-murp.onrender.com)
+
+- **Postman API Documentation:**
+  [https://documenter.getpostman.com/view/39865293/2sBXVhErWy](https://documenter.getpostman.com/view/39865293/2sBXVhErWy)
+
+---
+
+## Project Structure
+
+```txt
+src/
+├─ app/                # App Router pages
+├─ components/         # Reusable UI components
+├─ lib/                # Utilities and helpers
+```
+
+---
+
+## Setup & Installation
+
+### 1️⃣ Clone Repository
+
+```bash
+git clone <repository-url>
+cd news_portal_client
+```
+
+### 2️⃣ Install Dependencies
+
+```bash
+npm install
+```
+
+### 3️⃣ Run Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The app will run at `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Notes
 
-## Learn More
+- The UI is intentionally kept **minimal** to prioritize **functionality and API integration**.
+- With additional time, the design can be significantly enhanced while maintaining the same architecture.
+- The project demonstrates **clean separation of concerns**, proper data fetching patterns, and real-world backend integration.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Future Improvements
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Enhanced UI/UX design
+- Better responsive layout
+- Pagination and search
+- Role-based UI rendering
+- SEO optimization
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT © Sahed Rahman
