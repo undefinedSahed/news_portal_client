@@ -74,7 +74,15 @@ cd news_portal_client
 npm install
 ```
 
-### 3️⃣ Run Development Server
+### 3️⃣ Environment Variables
+
+Create a .env.local file in the root directory and add the following:
+
+NEXT_PUBLIC_API_URL=https://news-portal-server-murp.onrender.com
+NEXTAUTH_SECRET=your_nextauth_secret
+NEXTAUTH_URL=http://localhost:3000
+
+### 4️⃣ Run Development Server
 
 ```bash
 npm run dev
