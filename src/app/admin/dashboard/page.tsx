@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { toast } from "sonner";
 import Image from "next/image";
+import { News } from "@/lib/types";
 
 export default function AdminDashboard() {
   const router = useRouter();
@@ -49,11 +50,12 @@ export default function AdminDashboard() {
     setDeleteId(null);
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleTogglePublish = (news: any) => {
-    const formData = new FormData();
-    formData.append("isPublished", String(!news.isPublished));
-    updateNews({ id: news._id, formData });
+  const handleTogglePublish = (news: News) => {
+    const data = {
+      isPublished: !news.isPublished,
+    };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    updateNews({ id: news._id, data } as any);
   };
 
   const token =
