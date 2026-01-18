@@ -8,7 +8,6 @@ import { format } from "date-fns";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { useParams } from "next/navigation";
-import { Navbar } from "@/components/navbar";
 import Image from "next/image";
 
 export default function NewsPage() {
